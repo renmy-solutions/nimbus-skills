@@ -4,7 +4,7 @@
   "skills": [
     {
       "name": "apex-coverage-uplift",
-      "description": "Use when the user wants to raise Apex test coverage on a class, a feature area, or the whole project — typical phrasings are \"increase coverage\", \"get to 75%\", \"cover the uncovered branches in X\", or pasting Nimbus's coverage report. Reads the per-line coverage Nimbus already collects, picks the highest-leverage gap, and writes targeted tests rather than synthetic call-only tests.",
+      "description": "Use when the user wants to raise Apex test coverage on a class, a feature area, or the whole project — typical phrasings are \"increase coverage\", \"get to 75%\", \"cover the uncovered branches in X\", or pasting Renmy's coverage report. Reads the per-line coverage Renmy already collects, picks the highest-leverage gap, and writes targeted tests rather than synthetic call-only tests.",
       "agents": {
         "claude-code": "dist/claude-code/apex-coverage-uplift/SKILL.md",
         "cursor": "dist/cursor/apex-coverage-uplift.mdc",
@@ -13,7 +13,7 @@
     },
     {
       "name": "apex-pre-deploy-check",
-      "description": "Use before shipping an Apex change — \"is this safe to deploy\", \"pre-deploy check\", \"review this PR/diff\", \"check before I push\", or as an agent-driven CI gate. Runs the tests affected by the diff on Nimbus locally and reports coverage delta, governor usage, and (on request) mutation score, flagging risky patterns — a fast local gate before the slow org deploy.",
+      "description": "Use before shipping an Apex change — \"is this safe to deploy\", \"pre-deploy check\", \"review this PR/diff\", \"check before I push\", or as an agent-driven CI gate. Runs the tests affected by the diff on Renmy locally and reports coverage delta, governor usage, and (on request) mutation score, flagging risky patterns — a fast local gate before the slow org deploy.",
       "agents": {
         "claude-code": "dist/claude-code/apex-pre-deploy-check/SKILL.md",
         "cursor": "dist/cursor/apex-pre-deploy-check.mdc",
@@ -22,7 +22,7 @@
     },
     {
       "name": "apex-tdd",
-      "description": "Use when the user wants to build an Apex feature test-first, or asks to \"do TDD\", \"write the test first\", \"red-green-refactor\", or \"implement X with tests\". Drives a real red→green→refactor loop against Nimbus's local runtime so each cycle is sub-second instead of a multi-minute org deploy. This is the only way an agent can actually do TDD in Apex without an org.",
+      "description": "Use when the user wants to build an Apex feature test-first, or asks to \"do TDD\", \"write the test first\", \"red-green-refactor\", or \"implement X with tests\". Drives a real red→green→refactor loop against Renmy's local runtime so each cycle is sub-second instead of a multi-minute org deploy. This is the only way an agent can actually do TDD in Apex without an org.",
       "agents": {
         "claude-code": "dist/claude-code/apex-tdd/SKILL.md",
         "cursor": "dist/cursor/apex-tdd.mdc",
@@ -31,7 +31,7 @@
     },
     {
       "name": "bootstrap-nimbus",
-      "description": "Use when an SFDX project does not yet have Nimbus configured, or when the user asks to \"set up Nimbus\", \"install Nimbus on this project\", or \"wire Nimbus into CI\". Walks through detection, init, schema sync, stub gaps, the first green run, and a CI snippet — in that order. Stops to ask the user only at decision points (org alias, CI provider).",
+      "description": "Use when an SFDX project does not yet have Renmy (formerly Nimbus) configured, or when the user asks to \"set up Renmy\", \"install Renmy on this project\", or \"wire Renmy into CI\" (or says Nimbus for any of these). Walks through detection, init, schema sync, stub gaps, the first green run, and a CI snippet — in that order. Stops to ask the user only at decision points (org alias, CI provider).",
       "agents": {
         "claude-code": "dist/claude-code/bootstrap-nimbus/SKILL.md",
         "cursor": "dist/cursor/bootstrap-nimbus.mdc",
@@ -40,7 +40,7 @@
     },
     {
       "name": "bulkify-apex",
-      "description": "Use when Apex needs to be made safe against governor limits or bulk DML — \"bulkify this\", \"queries in a loop\", \"hitting SOQL/DML limits\", \"will this survive 200 records\", or a LimitException in a run. Uses Nimbus's local governor tracking and real 200-record execution to find limit problems and prove the fix, instead of eyeballing the code.",
+      "description": "Use when Apex needs to be made safe against governor limits or bulk DML — \"bulkify this\", \"queries in a loop\", \"hitting SOQL/DML limits\", \"will this survive 200 records\", or a LimitException in a run. Uses Renmy's local governor tracking and real 200-record execution to find limit problems and prove the fix, instead of eyeballing the code.",
       "agents": {
         "claude-code": "dist/claude-code/bulkify-apex/SKILL.md",
         "cursor": "dist/cursor/bulkify-apex.mdc",
@@ -49,7 +49,7 @@
     },
     {
       "name": "fix-failing-apex-test",
-      "description": "Use when an Apex test is failing and the user wants it fixed. Triggers on phrases like \"fix this test\", \"tests are red\", \"test failure\", or when the user pastes Nimbus or sf CLI test output showing assertion errors or exceptions. Drives the inner loop with Nimbus's MCP tools so the agent gets sub-second feedback per iteration instead of waiting for an org.",
+      "description": "Use when an Apex test is failing and the user wants it fixed. Triggers on phrases like \"fix this test\", \"tests are red\", \"test failure\", or when the user pastes Renmy or sf CLI test output showing assertion errors or exceptions. Drives the inner loop with Renmy's MCP tools so the agent gets sub-second feedback per iteration instead of waiting for an org.",
       "agents": {
         "claude-code": "dist/claude-code/fix-failing-apex-test/SKILL.md",
         "cursor": "dist/cursor/fix-failing-apex-test.mdc",
@@ -58,7 +58,7 @@
     },
     {
       "name": "harden-tests-with-mutation",
-      "description": "Use when the user wants to know whether tests actually test anything, or to strengthen weak assertions — \"are these tests any good\", \"run mutation testing\", \"kill the surviving mutants\", \"coverage is high but I don't trust it\". Uses Nimbus's mutation testing (Pro) to find code that's executed-but-not-asserted, then strengthens the tests so the mutants die. Coverage says a line ran; mutation says it was checked.",
+      "description": "Use when the user wants to know whether tests actually test anything, or to strengthen weak assertions — \"are these tests any good\", \"run mutation testing\", \"kill the surviving mutants\", \"coverage is high but I don't trust it\". Uses Renmy's mutation testing (Pro) to find code that's executed-but-not-asserted, then strengthens the tests so the mutants die. Coverage says a line ran; mutation says it was checked.",
       "agents": {
         "claude-code": "dist/claude-code/harden-tests-with-mutation/SKILL.md",
         "cursor": "dist/cursor/harden-tests-with-mutation.mdc",
@@ -67,7 +67,7 @@
     },
     {
       "name": "migrate-suite-to-nimbus",
-      "description": "Use when a team wants an existing Apex test suite running locally on Nimbus — phrasings like \"get our tests running on Nimbus\", \"migrate the suite\", \"why do so many tests fail on Nimbus\", or pasting a run where hundreds of tests fail right after first setup. Systematically clears the real blockers (missing schema, stubs, Test.loadData, unsupported calls) and drives toward a green local run, instead of fixing failures one by one.",
+      "description": "Use when a team wants an existing Apex test suite running locally on Renmy — phrasings like \"get our tests running on Renmy\", \"migrate the suite\", \"why do so many tests fail on Renmy\", or pasting a run where hundreds of tests fail right after first setup. Systematically clears the real blockers (missing schema, stubs, Test.loadData, unsupported calls) and drives toward a green local run, instead of fixing failures one by one.",
       "agents": {
         "claude-code": "dist/claude-code/migrate-suite-to-nimbus/SKILL.md",
         "cursor": "dist/cursor/migrate-suite-to-nimbus.mdc",
@@ -85,7 +85,7 @@
     },
     {
       "name": "triage-apex-failures",
-      "description": "Use when a test run comes back with many failures and the user wants to understand them before fixing — \"triage these failures\", \"what's going on with the suite\", \"group these errors\", or pasting a long red run. Clusters failures by root cause using Nimbus's stack traces and execution traces, explains each cluster, and proposes a fix order — rather than diving into the first failure.",
+      "description": "Use when a test run comes back with many failures and the user wants to understand them before fixing — \"triage these failures\", \"what's going on with the suite\", \"group these errors\", or pasting a long red run. Clusters failures by root cause using Renmy's stack traces and execution traces, explains each cluster, and proposes a fix order — rather than diving into the first failure.",
       "agents": {
         "claude-code": "dist/claude-code/triage-apex-failures/SKILL.md",
         "cursor": "dist/cursor/triage-apex-failures.mdc",

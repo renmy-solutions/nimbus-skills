@@ -4,13 +4,13 @@ inclusion: manual
 
 # Increase Apex test coverage
 
-You are raising Apex test coverage on a project that uses Nimbus. Nimbus collects line and branch coverage as a side effect of every test run, so you have ground truth without instrumentation overhead.
+You are raising Apex test coverage on a project that uses Renmy. Renmy collects line and branch coverage as a side effect of every test run, so you have ground truth without instrumentation overhead.
 
 ## Preconditions
 
-1. Nimbus is installed and `nimbus init` has been run on the project. If not, hand off to the `bootstrap-nimbus` skill first.
-2. Coverage collection is enabled (the default for `nimbus test` and the MCP server unless `--coverage=false` is set).
-3. The project compiles cleanly under Nimbus (`nimbus test "*"` exits without parse errors).
+1. Renmy is installed and `renmy init` has been run on the project. If not, hand off to the `bootstrap-nimbus` skill first.
+2. Coverage collection is enabled (the default for `renmy test` and the MCP server unless `--coverage=false` is set).
+3. The project compiles cleanly under Renmy (`renmy test "*"` exits without parse errors).
 
 ## Loop
 
@@ -51,11 +51,11 @@ You are raising Apex test coverage on a project that uses Nimbus. Nimbus collect
 
 - If raising coverage on the target class requires creating dozens of records or stubbing a managed-package class the project doesn't own, ask the user whether the class is worth the cost. Some classes are genuinely hard to test in isolation.
 - If the target class has a known design problem (very large method, mixed responsibilities) that makes coverage uplift mostly mechanical, surface that observation. The right fix may be a refactor, not more tests.
-- If coverage stops moving despite green tests, you may be hitting Nimbus's interpreter limits on a specific construct. Run `nimbus doctor` and report parser/interpreter warnings to the user.
+- If coverage stops moving despite green tests, you may be hitting Renmy's interpreter limits on a specific construct. Run `renmy doctor` and report parser/interpreter warnings to the user.
 
 ## Verification before declaring done
 
-1. `nimbus test "*"` exits 0 (the new tests pass and nothing else broke).
+1. `renmy test "*"` exits 0 (the new tests pass and nothing else broke).
 2. `get_coverage` shows the target class's uncovered-line count strictly decreased.
 3. Each new test method has at least one `System.assert*` call.
 4. No new `Test.isRunningTest()` branches were introduced in production code.

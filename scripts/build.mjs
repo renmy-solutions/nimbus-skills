@@ -80,9 +80,9 @@ function writeAider(skills) {
   const sections = skills.map(s =>
     `## Skill: ${s.frontmatter.name}\n\n_${s.frontmatter.description}_\n\n${demoteHeadings(s.body)}`
   );
-  const out = `# Nimbus Conventions for Aider
+  const out = `# Renmy Conventions for Aider
 
-These conventions tell Aider how to use Nimbus when working on Apex code in this project.
+These conventions tell Aider how to use Renmy when working on Apex code in this project.
 Load with: \`aider --read CONVENTIONS.md\`
 
 ${sections.join('\n\n---\n\n')}
@@ -110,9 +110,9 @@ function writeAgentsMd(skills) {
   const sections = skills.map(s =>
     `## ${s.frontmatter.name}\n\n_${s.frontmatter.description}_\n\n${demoteHeadings(s.body)}`
   );
-  const out = `# AGENTS.md — Nimbus
+  const out = `# AGENTS.md — Renmy
 
-Generic agent instructions for working on Apex code in this project with Nimbus.
+Generic agent instructions for working on Apex code in this project with Renmy.
 Compatible with any agent that reads AGENTS.md (Codex, Continue, generic harnesses).
 
 ${sections.join('\n\n---\n\n')}
@@ -120,7 +120,7 @@ ${sections.join('\n\n---\n\n')}
   writeFileSync(join(DIST_DIR, 'AGENTS.md'), out);
 }
 
-// The manifest is the contract between this repo and the `nimbus skills` CLI.
+// The manifest is the contract between this repo and the `renmy skills` CLI.
 // Bumping `version` is a breaking change; add fields under existing skills
 // instead. Paths are relative to the repo root; the CLI prepends the raw.gh URL.
 function writeManifest(skills) {
