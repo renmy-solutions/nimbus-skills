@@ -4,16 +4,16 @@ inclusion: manual
 
 # Fix a failing Apex test
 
-You are fixing a real Apex test failure in a Salesforce project that uses Nimbus for local execution. Nimbus runs Apex (and SOQL/DML) against an embedded Postgres without an org — the inner loop is fast enough to iterate aggressively.
+You are fixing a real Apex test failure in a Salesforce project that uses Renmy for local execution. Renmy runs Apex (and SOQL/DML) against an embedded Postgres without an org — the inner loop is fast enough to iterate aggressively.
 
 ## Preconditions
 
-1. The project has `sfdx-project.json` and Nimbus is installed (`nimbus --version`).
-2. Nimbus's MCP server is registered with the agent. If not, register it:
+1. The project has `sfdx-project.json` and Renmy is installed (`renmy --version`).
+2. Renmy's MCP server is registered with the agent. If not, register it:
    ```
-   claude mcp add nimbus -- nimbus mcp
+   claude mcp add nimbus -- renmy mcp
    ```
-3. If MCP is unavailable, fall back to `nimbus test <pattern> --json` and parse the JSON output.
+3. If MCP is unavailable, fall back to `renmy test <pattern> --json` and parse the JSON output.
 
 ## Loop
 
@@ -61,4 +61,4 @@ Before reporting the test fixed:
 
 1. Run the broader pattern (`ClassName.*` if you started with a single method, or `*` if it's a small project) to confirm you didn't break a sibling test.
 2. Re-read your edit. Did you change behaviour for callers other than the test? If yes, that's a real change — flag it in the summary.
-3. If the project tracks coverage (look for a `nimbus.config` `coverage` key or `nimbus test --coverage` in CI), spot-check that coverage on the edited file did not drop.
+3. If the project tracks coverage (look for a `nimbus.config` `coverage` key or `renmy test --coverage` in CI), spot-check that coverage on the edited file did not drop.

@@ -11,11 +11,11 @@ Ask the user questions to fill out each section below. Don't dump the whole temp
 
 ## Preconditions
 
-1. **Check for duplicates first.** Ask the user to quickly scan open issues at **https://github.com/nimbus-solution/nimbus/issues** for anything that sounds like the same bug. If a matching issue exists, post a comment there instead of opening a new one (include any missing details from this process).
-2. **Confirm the version.** Ask the user to run `nimbus --version` and read back the exact output. Don't accept "latest" or "v1.1.x" — get the precise semver.
-3. **If it's a test failure:** ask them to run the test with `--json` (e.g. `nimbus test "ClassName" --json`) and paste the result so the AI has structured failure data.
+1. **Check for duplicates first.** Ask the user to quickly scan open issues at **https://github.com/renmy-solutions/renmy/issues** for anything that sounds like the same bug. If a matching issue exists, post a comment there instead of opening a new one (include any missing details from this process).
+2. **Confirm the version.** Ask the user to run `renmy --version` (`nimbus --version` on versions before 1.50.0) and read back the exact output. Don't accept "latest" or "v1.1.x" — get the precise semver.
+3. **If it's a test failure:** ask them to run the test with `--json` (e.g. `renmy test "ClassName" --json`) and paste the result so the AI has structured failure data.
 4. **If it's a crash:** ask them for the full error output (don't let them paraphrase — paste the actual output).
-5. Let the user know the issue will be filed at **https://github.com/nimbus-solution/nimbus/issues/new**.
+5. Let the user know the issue will be filed at **https://github.com/renmy-solutions/renmy/issues/new**.
 
 ## The sections any report needs
 
@@ -35,7 +35,7 @@ Examples of good titles (drawn from real reports):
 Examples of poor titles (too vague for routing or dedup):
 - `Something broke`
 - `Test fails`
-- `Error when running nimbus`
+- `Error when running renmy`
 
 **Ask the user** for a one-line summary. If it's vague, probe: "What area? Is it a crash, wrong output, a hang? Is it a new regression or has it never worked?"
 
@@ -45,7 +45,7 @@ This matters because the same symptom can have different causes across versions 
 
 | Field | How to get it |
 |---|---|
-| Project version | `nimbus --version` |
+| Project version | `renmy --version` |
 | OS / arch | `uname -sm` |
 | DB provider | Embedded (free) or Pro/daemon |
 | License tier | Free / Pro / Team |
@@ -87,7 +87,7 @@ A side-by-side comparison. If the output is JSON (e.g. from `--json`), paste the
 
 When relevant, ask:
 
-> "What does `nimbus --version` report? Was this working in a previous version? If so, which version worked and which version broke it?"
+> "What does `renmy --version` report? Was this working in a previous version? If so, which version worked and which version broke it?"
 
 Knowing it's a regression (worked in v1.1.5, broke in v1.1.6) is the single most useful diagnostic signal the AI can get.
 
@@ -154,7 +154,7 @@ Add a **Labels** comment asking the person filing to add applicable labels:
 <!-- Labels to apply: bug, regression, needs-info (if incomplete) -->
 ```
 
-Present the assembled report to the user for review before they submit. Ask them to paste it into the GitHub issue form at **https://github.com/nimbus-solution/nimbus/issues/new**. If the user doesn't have a GitHub account, offer to help them create one or tell them they can paste the report into an email to the maintainers.
+Present the assembled report to the user for review before they submit. Ask them to paste it into the GitHub issue form at **https://github.com/renmy-solutions/renmy/issues/new**. If the user doesn't have a GitHub account, offer to help them create one or tell them they can paste the report into an email to the maintainers.
 
 ## Hard rules
 

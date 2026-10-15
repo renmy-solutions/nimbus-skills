@@ -5,7 +5,7 @@
 A skill belongs in this repo if it:
 
 1. Targets a concrete Apex workflow (a thing a Salesforce developer does on a Tuesday afternoon).
-2. Benefits materially from Nimbus's sub-second test loop or MCP tools — not just generic Apex advice.
+2. Benefits materially from Renmy's sub-second test loop or MCP tools — not just generic Apex advice.
 3. Has hard rules. Skills that say "use your judgment" without listing the bad alternatives are not useful guardrails.
 
 Open an issue describing the workflow and the failure modes you want the skill to prevent before sending a PR.
@@ -35,11 +35,11 @@ CI fails if `dist/` is out of sync with `skills/` — never commit changes to `s
 
 ## Style
 
-- **Imperative voice.** "Run `nimbus test`" not "you should run `nimbus test`".
+- **Imperative voice.** "Run `renmy test`" not "you should run `renmy test`".
 - **Numbered loops, not prose.** Agents follow numbered steps better than paragraphs.
 - **Hard rules section.** List what the agent must *not* do. This is where most of the safety value lives.
 - **Verification section.** State the conditions under which the skill is "done". Without this, agents stop too early or too late.
-- **No marketing.** Don't say Nimbus is fast or great — show it by recommending a workflow that depends on speed.
+- **No marketing.** Don't say Renmy is fast or great — show it by recommending a workflow that depends on speed.
 
 ## License
 

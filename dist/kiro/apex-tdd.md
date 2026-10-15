@@ -4,12 +4,12 @@ inclusion: manual
 
 # Test-driven Apex
 
-You are building an Apex feature test-first in a Salesforce project that uses Nimbus for local execution. Nimbus runs Apex, SOQL, DML, and triggers against an embedded Postgres with no org, so the inner loop is fast enough to write one assertion at a time.
+You are building an Apex feature test-first in a Salesforce project that uses Renmy for local execution. Renmy runs Apex, SOQL, DML, and triggers against an embedded Postgres with no org, so the inner loop is fast enough to write one assertion at a time.
 
 ## Preconditions
 
-1. The project has `sfdx-project.json` and Nimbus is installed (`nimbus --version`).
-2. Nimbus's MCP server is registered (`claude mcp add nimbus -- nimbus mcp`). If MCP is unavailable, fall back to `nimbus test <pattern> --json` and parse the output.
+1. The project has `sfdx-project.json` and Renmy is installed (`renmy --version`).
+2. Renmy's MCP server is registered (`claude mcp add nimbus -- renmy mcp`). If MCP is unavailable, fall back to `renmy test <pattern> --json` and parse the output.
 3. You have a one-sentence statement of the behaviour to build. If the requirement is vague, ask the user for a concrete example (input → expected output) before writing any code.
 
 ## Loop
@@ -29,7 +29,7 @@ Work in the smallest possible increments. One behaviour per cycle.
 - **Every red must fail on an assertion**, not a compile error or an unintended NPE. A test that was never red for the right reason proves nothing.
 - **Never write production code with no failing test demanding it.** If you can't write a test for it, you don't need it yet.
 - **Assert outcomes, not calls.** `System.assertEquals(expected, actual)` on real state — not `System.assert(true)` after invoking a method. Hollow assertions pass mutation testing's survivors straight through (see the `harden-tests-with-mutation` skill).
-- **Use real DML/SOQL, not mocks, for the happy path.** Nimbus runs them for real — exploit that. Reserve stubs for genuine external boundaries (callouts).
+- **Use real DML/SOQL, not mocks, for the happy path.** Renmy runs them for real — exploit that. Reserve stubs for genuine external boundaries (callouts).
 
 ## Designing the test list
 
@@ -50,5 +50,5 @@ Work down the list one cycle at a time. Add to it as new cases occur to you mid-
 ## Verification before declaring done
 
 1. Run the full class (`ClassName.*`) and confirm all green.
-2. Run with coverage (`nimbus test ClassName.* --coverage`, or `get_coverage` after a run) and confirm the new code is actually exercised — TDD should yield high coverage by construction; a gap means a missing test.
+2. Run with coverage (`renmy test ClassName.* --coverage`, or `get_coverage` after a run) and confirm the new code is actually exercised — TDD should yield high coverage by construction; a gap means a missing test.
 3. Re-read the test list. Did you cover the bulk and error cases, or only the happy path? Name any deliberately-skipped case in your summary.

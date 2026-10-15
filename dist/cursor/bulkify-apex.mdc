@@ -1,17 +1,17 @@
 ---
-description: Use when Apex needs to be made safe against governor limits or bulk DML — "bulkify this", "queries in a loop", "hitting SOQL/DML limits", "will this survive 200 records", or a LimitException in a run. Uses Nimbus's local governor tracking and real 200-record execution to find limit problems and prove the fix, instead of eyeballing the code.
+description: Use when Apex needs to be made safe against governor limits or bulk DML — "bulkify this", "queries in a loop", "hitting SOQL/DML limits", "will this survive 200 records", or a LimitException in a run. Uses Renmy's local governor tracking and real 200-record execution to find limit problems and prove the fix, instead of eyeballing the code.
 globs:
 alwaysApply: false
 ---
 
 # Bulkify Apex against governor limits
 
-You are making Apex bulk-safe in a Salesforce project running on Nimbus. Nimbus executes triggers and DML for real and tracks governor usage per test locally, so you can *measure* SOQL/DML/CPU consumption and prove a bulk fix — not just argue about it.
+You are making Apex bulk-safe in a Salesforce project running on Renmy. Renmy executes triggers and DML for real and tracks governor usage per test locally, so you can *measure* SOQL/DML/CPU consumption and prove a bulk fix — not just argue about it.
 
 ## Preconditions
 
-1. Nimbus is installed and the project runs.
-2. Nimbus reports per-test governor usage. Preferred path (MCP): call `run_apex_tests` for the pattern, then `get_governor_usage` (optionally with a `class` filter) — it returns each test's usage map (SOQL queries, DML statements, CPU, …) plus the peak per limit. CLI fallback: `nimbus test "<pattern>" --json` and read each result's `governorUsage`. If governor enforcement is configured `strict`, over-limit code throws `LimitException` directly; if `warn`, usage is reported without failing.
+1. Renmy is installed and the project runs.
+2. Renmy reports per-test governor usage. Preferred path (MCP): call `run_apex_tests` for the pattern, then `get_governor_usage` (optionally with a `class` filter) — it returns each test's usage map (SOQL queries, DML statements, CPU, …) plus the peak per limit. CLI fallback: `renmy test "<pattern>" --json` and read each result's `governorUsage`. If governor enforcement is configured `strict`, over-limit code throws `LimitException` directly; if `warn`, usage is reported without failing.
 
 ## Method
 
@@ -33,7 +33,7 @@ You are making Apex bulk-safe in a Salesforce project running on Nimbus. Nimbus 
 - **Prove it with numbers.** "Bulkified" means the measured `governorUsage` for the operation is constant in the record count — quote the before/after. Don't claim a fix you didn't measure.
 - **Keep the bulk test.** It's the regression guard against someone re-introducing a loop query later. Leave it in the suite.
 - **Never raise limits or split into smaller batches to dodge the count.** Fix the algorithm. Chunking DML to stay under a limit is a smell, not a fix.
-- **Watch recursion too.** If the code is in a trigger, a bulk update can re-fire it — verify with a trace (`nimbus trace`) that the path runs the expected number of times, and add a static reentry guard if it doesn't.
+- **Watch recursion too.** If the code is in a trigger, a bulk update can re-fire it — verify with a trace (`renmy trace`) that the path runs the expected number of times, and add a static reentry guard if it doesn't.
 - **Don't sacrifice readability blindly.** A `Map`-keyed lookup is the idiom; keep names clear so the bulk version is still obvious to the next reader.
 
 ## When to stop and ask the user
